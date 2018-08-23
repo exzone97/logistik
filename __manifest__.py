@@ -1,6 +1,6 @@
 {
-	'name':'Tutorial theme',
-	'description': 'A description for your theme.',
+	'name':'Snippet Legapaket',
+	'description': '',
 	'version':'1.0',
 	'author':'Your name',
 	'data': [
@@ -8,6 +8,5 @@
 		],
 	'category': 'Theme/Creative',
 	'depends': ['website','web'],
-	'installable': True,
 	'application': True,
 }
