@@ -6,7 +6,5 @@
 	'data': [
 		'views/snippets.xml',
 		],
-	'category': 'Theme/Creative',
 	'depends': ['website','web'],
-	'application': True,
 }
