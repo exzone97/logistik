@@ -1,0 +1,93 @@
+<odoo>
+	<data>
+
+		<!-- Tracking =================================================================================================================== -->
+
+		<template id="tracking">
+			<t t-call="website.layout">
+				<div id="wrap" class="wrap_bg">
+					<t t-call="website_legapaket.snippet_track_connote"></t>
+					<t t-if="message != None">
+						<t t-esc="message"></t>
+					</t>
+					<t t-else="">
+						<t t-call="website_legapaket.tracking_main"></t>
+					</t>
+				</div>
+			</t>
+		</template>
+
+		<!-- Tracking Main ===================================================================================================================-->
+
+		<template id="tracking_main">
+			<t t-set="i" t-value="1"/>
+			<table style="width:100%">
+				<tr>
+					<th>#</th>
+					<th>Location</th>
+					<th>Time</th>
+					<th>Status</th>
+				</tr>
+				<t t-foreach="responses" t-as="response">
+					<t t-call="website_legapaket.tracking_row"></t>
+					<t t-set="i" t-value="i+1"/>
+				</t>
+			</table>
+		</template>
+
+		<!-- Tracking Row ===================================================================================================================-->
+
+		<template id="tracking_row">
+			<tr>
+				<td><t t-esc="i" /></td>
+				<td><t t-esc="response['location']" /></td>
+				<td><t t-esc="response['time']" /></td>
+				<td><t t-esc="response['status']" /></td>
+			</tr>
+		</template>
+
+		<!-- Calculate =================================================================================================================== -->
+
+		<template id="calculate">
+			<t t-call="website.layout">
+				<div id="wrap" class="wrap_bg">
+					<t t-call="website_legapaket.snippet_calculate_shipping_cost"></t>
+					<t t-call="website_legapaket.calculate_main"></t>
+				</div>
+			</t>
+		</template>
+
+		<!-- Calculate Main ===================================================================================================================-->
+
+		<template id="calculate_main">
+			<t t-set="i" t-value="1"/>
+			<table style="width:100%">
+				<tr>
+					<th>
+						Shipping cost calculation for <t t-esc="weight"/>kg(s) <t t-esc="dimension" /> cm from <t t-esc="city_from" /> to <t t-esc="city_to" />
+					</th>
+				</tr>
+				<tr>
+					<th>#</th>
+					<th>Product</th>
+					<th>Cost</th>
+				</tr>
+				<t t-foreach="responses" t-as="response">
+					<t t-call="website_legapaket.calculate_row"></t>
+					<t t-set="i" t-value="i+1"/>
+				</t>
+			</table>
+		</template>
+
+		<!-- Calculate Row ===================================================================================================================-->
+
+		<template id="calculate_row">
+			<tr>
+				<td> <t t-esc="i" /> </td>
+				<td><t t-esc="response['product']" /></td>
+				<td><t t-esc="response['currency']" /><t t-esc="response['cost']" /></td>
+			</tr>
+		</template>
+
+	</data>
+</odoo>

@@ -18,25 +18,30 @@ class Controller(http.Controller):
 	}
 
 	# butuh parameter namanya connote (nama inputnya connote)
-	@http.route('/track', auth='public', methods=['get'])
+	@http.route('/track', auth='public', methods=['get'], website=True)
 	def track(self, connote, **kw):
 		if not connote:
-			raise ValidationError('Connote number is empty')
+			message = 'Connote number is empty'
+			return self._checkMessage(message, 'website_legapaket.tracking')
 
 		connote_regex = re.compile("^[A-Za-z0-9]{5}-[A-Za-z0-9]+-[0-9]{5}$")
 		if not connote_regex.match(connote):
-			raise ValidationError('Connote number is invalid')
+			message = 'Connote number is invalid'
+			return self._checkMessage(message, 'website_legapaket.tracking')
 
 		response = self._getAPIResponse('track', {
 			'connote': connote,
 		})
 
-		# ganti, ngereturn web sama ngasih responsenya
-		# response sama kayak di doc bagian track
-		return response
+		if not response:
+			return self._checkMessage(message, 'website_legapaket.tracking')
+
+		return http.request.render('website_legapaket.tracking', {
+			'responses' : response,
+		})
 
 	# butuh parameter city_from, city_to, weight, dimension
-	@http.route('/calculate', auth='public', methods=['get'])
+	@http.route('/calculate', auth='public', methods=['get'], website=True)
 	def calculate(self, city_from, city_to, weight, dimension, **kw):
 		if not city_from:
 			raise ValidationError('City from is empty')
@@ -63,9 +68,14 @@ class Controller(http.Controller):
 			'dimension': dimension,
 		})
 
-		# ganti, ngereturn web sama ngasih responsenya
-		# response sama kayak di doc bagian calculate
-		return response
+		return http.request.render('website_legapaket.calculate', {
+			'responses' : response,
+			'city_from' : city_from,
+			'city_to' : city_to,
+			'weight' : weight,
+			'dimension' : dimension,
+
+		})
 
 	def _getAPIResponse(self, api, params):
 		api_info = {
@@ -83,6 +93,15 @@ class Controller(http.Controller):
 				raise Exception(('Parameter \'%s\' is not exists when sending API \'%s\'' % (param, api)))
 
 		response = requests.get(('%s%s' % (self.BASE_API_URL, _api['url'])), params=params)
-		content = json.loads(response.content)
 
-		return content
+		try:
+			content = json.loads(response.content)
+			return content
+		except Exception:
+			return False
+
+	def _checkMessage(self, message, view):
+		if message:
+			return http.request.render(view, {
+				'message': message
+			})

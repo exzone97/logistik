@@ -5,6 +5,7 @@
 	'author':'Your name',
 	'data': [
 		'views/snippets.xml',
+		'views/website.xml',
 	],
 	'depends': ['website','web'],
 }
