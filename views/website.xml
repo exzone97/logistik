@@ -65,10 +65,10 @@
 			<t t-call="website.layout">
 				<div id="wrap" class="wrap_bg">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<t t-call="website_legapaket.snippet_calculate_shipping_cost"></t>
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-8">
 							<t t-if="message != None">
 								<h3>
 									<t t-esc="message"></t>
