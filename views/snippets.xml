@@ -1,4 +1,3 @@
-<!-- TO DO : form action dll :) -->
 <odoo>
 	<template id="snippet_track_connote" name="Track a connote">
 		<section class="snippet_track_connote">
@@ -17,7 +16,6 @@
 		</section>
 	</template>
 
-<!-- TO DO : mskin ke css style input-group dan input-group-addon -->
 	<template id="snippet_calculate_shipping_cost" name="Calculate Shipping Cost">
 		<section class="snippet_calculate_shipping_cost">
 			<form action="/calculate" method="get">

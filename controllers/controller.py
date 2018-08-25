@@ -38,28 +38,38 @@ class Controller(http.Controller):
 
 		return http.request.render('website_legapaket.tracking', {
 			'responses' : response,
+			'connote' : connote.replace("-",""),
 		})
 
 	# butuh parameter city_from, city_to, weight, dimension
 	@http.route('/calculate', auth='public', methods=['get'], website=True)
 	def calculate(self, city_from, city_to, weight, dimension, **kw):
 		if not city_from:
-			raise ValidationError('City from is empty')
-		if not city_to:
-			raise ValidationError('City to is empty')
-		if not weight:
-			raise ValidationError('Weight is empty')
-		if not dimension:
-			raise ValidationError('Dimension is empty')
+			message = 'City from is empty'
+			return self._checkMessage(message, 'website_legapaket.calculate')
 
+		if not city_to:
+			message = 'City to is empty'
+			return self._checkMessage(message, 'website_legapaket.calculate')
+
+		if not weight:
+			message = 'Weight is empty'
+			return self._checkMessage(message, 'website_legapaket.calculate')
+
+		if not dimension:
+			message = 'Dimension is empty'
+			return self._checkMessage(message, 'website_legapaket.calculate')
+			
 		try:
 			weight = float(weight)
 		except ValueError:
-			raise ValidationError('Weight is invalid')
+			message = 'Weight is Invalid'
+			return self._checkMessage(message, 'website_legapaket.calculate')
 
 		dimension_regex = re.compile("^[0-9]+x[0-9]+x[0-9]+$")
 		if not dimension_regex.match(dimension):
-			raise ValidationError('Dimension is invalid')
+			message = 'Dimension is Invalid'
+			return self._checkMessage(message, 'website_legapaket.calculate')
 
 		response = self._getAPIResponse('calculate', {
 			'from': city_from,
@@ -67,6 +77,9 @@ class Controller(http.Controller):
 			'weight': weight,
 			'dimension': dimension,
 		})
+
+		if not response:
+			return self._checkMessage(message, 'website_legapaket.calculate')
 
 		return http.request.render('website_legapaket.calculate', {
 			'responses' : response,
