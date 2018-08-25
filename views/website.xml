@@ -6,17 +6,23 @@
 		<template id="tracking">
 			<t t-call="website.layout">
 				<div id="wrap" class="wrap_bg">
-					<t t-call="website_legapaket.snippet_track_connote"></t>
-					<t t-if="message != None">
-						<div class="container">
-							<h3>
-								<t t-esc="message"></t>
-							</h3>
+					<div class="container">
+						<div class="row">
+							<t t-call="website_legapaket.snippet_track_connote"></t>
 						</div>
-					</t>
-					<t t-else="">
-						<t t-call="website_legapaket.tracking_main"></t>
-					</t>
+							
+						<t t-if="message != None">
+							<div class="container">
+								<h3>
+									<t t-esc="message"></t>
+								</h3>
+							</div>
+						</t>
+						<t t-else="">
+							<t t-call="website_legapaket.tracking_main"></t>
+						</t>
+					</div>
+					
 				</div>
 			</t>
 		</template>
@@ -64,19 +70,23 @@
 		<template id="calculate">
 			<t t-call="website.layout">
 				<div id="wrap" class="wrap_bg">
-					<div class="row">
-						<div class="col-md-4">
+					<div class="container">
+						<div class="row">
 							<t t-call="website_legapaket.snippet_calculate_shipping_cost"></t>
-						</div>
-						<div class="col-md-8">
-							<t t-if="message != None">
-								<h3>
-									<t t-esc="message"></t>
-								</h3>
-							</t>
-							<t t-else="">
-								<t t-call="website_legapaket.calculate_main"></t>
-							</t>
+							<div class="col-md-8">
+								<br/>
+								<br/>
+								<t t-if="message != None">
+									<br/>
+									<h3>
+										<t t-esc="message"></t>
+									</h3>
+								</t>
+								<t t-else="">
+									<br/>
+									<t t-call="website_legapaket.calculate_main"></t>
+								</t>
+							</div>
 						</div>
 					</div>
 				</div>

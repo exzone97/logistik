@@ -67,7 +67,7 @@ class Controller(http.Controller):
 			return self._checkMessage(message, 'website_legapaket.calculate')
 
 		if weight<0:
-			message = 'Weight > 0'
+			message = 'Weight < 0'
 			return self._checkMessage(message, 'website_legapaket.calculate')
 
 		# dimension_regex = re.compile("^[0-9]+x[0-9]+x[0-9]+$")

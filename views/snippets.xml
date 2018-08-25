@@ -2,14 +2,11 @@
 	<template id="snippet_track_connote" name="Track a connote">
 		<section class="snippet_track_connote">
 			<form action="/track" method="get">
-				<div class="container text-center">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="input-group input-group-md form-group">
-								<label class="input-group-addon" asp-for="Connote">#</label>
-								<input name="connote" asp-for="Connote" class="form-control" type="text" placeholder="Input connote number here..."/>
-							</div>
-						</div>
+				<div class="col-md-4">
+					<h3>Track a connote</h3>
+					<div class="input-group input-group-md form-group">
+						<label class="input-group-addon" asp-for="Connote">#</label>
+						<input name="connote" asp-for="Connote" class="form-control" type="text" placeholder="Input connote number here..."/>
 					</div>
 				</div>
 			</form>
@@ -19,30 +16,24 @@
 	<template id="snippet_calculate_shipping_cost" name="Calculate Shipping Cost">
 		<section class="snippet_calculate_shipping_cost">
 			<form action="/calculate" method="get">
-				<div class="container text-center">
-					<!-- <div class="row">
-						<div class="col-md-4"> -->
-							<div class="input-group input-group-md form-group" style="width:100%">
-								<label class="input-group-addon" asp-for="origin" style="width:30%">From</label>
-								<input name="city_from" asp-for="origin" class="form-control" type="text" placeholder="Input origin city..."/>
-							</div>
-							<div class="input-group input-group-md form-group" style="width:100%">
-								<label class="input-group-addon" asp-for="destination" style="width:30%">To</label>
-								<input name="city_to" asp-for="destination" class="form-control" type="text" placeholder="Input destination city..."/>
-							</div>
-							<div class="input-group input-group-md form-group" style="width:100%">
-								<label class="input-group-addon" asp-for="weight" style="width:30%">kg</label>
-								<input name="weight" asp-for="weight" class="form-control" type="number" placeholder="Input weight"/>
-							</div>
-							<div class="input-group input-group-md form-group" style="width:100%">
-								<label class="input-group-addon" asp-for="dimension" style="width:30%">dimension</label>
-								<input name="dimension" asp-for="dimension" class="form-control" type="text" placeholder="Input dimension (wxhxd) in cm"/>
-							</div>
-						<!-- </div>
-						
-					</div> -->
-				</div>
-				<div class="container">
+				<div class="col-md-4">
+					<h3>Calculate Shipping Cost</h3>
+					<div class="input-group input-group-md form-group" style="width:100%">
+						<label class="input-group-addon" asp-for="origin" style="width:30%">From</label>
+						<input name="city_from" asp-for="origin" class="form-control" type="text" placeholder="Input origin city..."/>
+					</div>
+					<div class="input-group input-group-md form-group" style="width:100%">
+						<label class="input-group-addon" asp-for="destination" style="width:30%">To</label>
+						<input name="city_to" asp-for="destination" class="form-control" type="text" placeholder="Input destination city..."/>
+					</div>
+					<div class="input-group input-group-md form-group" style="width:100%">
+						<label class="input-group-addon" asp-for="weight" style="width:30%">kg</label>
+						<input name="weight" asp-for="weight" class="form-control" type="number" placeholder="Input weight"/>
+					</div>
+					<div class="input-group input-group-md form-group" style="width:100%">
+						<label class="input-group-addon" asp-for="dimension" style="width:30%">dimension</label>
+						<input name="dimension" asp-for="dimension" class="form-control" type="text" placeholder="Input dimension (wxhxd) in cm"/>
+					</div>
 					<button type="submit" class="btn btn-success text-left">Calculate</button>
 				</div>
 			</form>
