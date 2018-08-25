@@ -66,6 +66,10 @@ class Controller(http.Controller):
 			message = 'Weight is Invalid'
 			return self._checkMessage(message, 'website_legapaket.calculate')
 
+		if weight<0:
+			message = 'Weight > 0'
+			return self._checkMessage(message, 'website_legapaket.calculate')
+
 		# dimension_regex = re.compile("^[0-9]+x[0-9]+x[0-9]+$")
 		dimension_regex = re.compile("^[-+]?[0-9]*\.?[0-9]+x[-+]?[0-9]*\.?[0-9]+x[-+]?[0-9]*\.?[0-9]+$")
 		if not dimension_regex.match(dimension):
