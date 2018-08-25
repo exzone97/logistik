@@ -8,7 +8,11 @@
 				<div id="wrap" class="wrap_bg">
 					<t t-call="website_legapaket.snippet_track_connote"></t>
 					<t t-if="message != None">
-						<t t-esc="message"></t>
+						<div class="container">
+							<h3>
+								<t t-esc="message"></t>
+							</h3>
+						</div>
 					</t>
 					<t t-else="">
 						<t t-call="website_legapaket.tracking_main"></t>
@@ -66,7 +70,9 @@
 						</div>
 						<div class="col-md-9">
 							<t t-if="message != None">
-								<t t-esc="message"></t>
+								<h3>
+									<t t-esc="message"></t>
+								</h3>
 							</t>
 							<t t-else="">
 								<t t-call="website_legapaket.calculate_main"></t>
